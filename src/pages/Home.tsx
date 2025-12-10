@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Menu, AlertTriangle, X, MapPin } from 'lucide-react';
+import { Menu, AlertTriangle, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { UFPELocation, ufpeLocations } from '@/data/ufpeLocations';
 import {
   Sheet,
   SheetContent,
@@ -11,68 +10,19 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import logo from '@/assets/logo.png';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { DivIcon } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import MapView from '@/components/MapView';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [showEmergencyOptions, setShowEmergencyOptions] = useState(false);
 
-  const ufpeCenter: [number, number] = [-8.0522, -34.9510];
-
-  const createCustomIcon = (shortName: string) => {
-    return new DivIcon({
-      className: 'custom-marker',
-      html: `
-        <div style="
-          background: linear-gradient(135deg, #212433 0%, #1A33B0 100%);
-          color: white;
-          padding: 6px 10px;
-          border-radius: 8px;
-          font-size: 11px;
-          font-weight: 600;
-          box-shadow: 0 4px 12px rgba(42, 57, 133, 0.4);
-          white-space: nowrap;
-          border: 2px solid white;
-        ">
-          ${shortName}
-        </div>
-      `,
-      iconSize: [60, 30],
-      iconAnchor: [30, 30],
-    });
-  };
-
-  const handleLocationClick = (location: UFPELocation) => {
-    navigate(`/relatos/${location.id}`);
-  };
-
   return (
     <div className="mobile-container relative h-screen overflow-hidden bg-muted">
       {/* Map */}
       <div className="absolute inset-0 z-0">
-        <MapContainer
-          center={ufpeCenter}
-          zoom={16}
-          style={{ height: '100%', width: '100%' }}
-          zoomControl={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {ufpeLocations.map((location) => (
-            <Marker
-              key={location.id}
-              position={location.coordinates}
-              icon={createCustomIcon(location.shortName)}
-              eventHandlers={{
-                click: () => handleLocationClick(location),
-              }}
-            />
-          ))}
-        </MapContainer>
+        <div style={{ height: '100%', width: '100%' }}>
+          <MapView />
+        </div>
       </div>
 
       {/* Header */}
