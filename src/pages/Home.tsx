@@ -70,20 +70,7 @@ const Home: React.FC = () => {
               eventHandlers={{
                 click: () => handleLocationClick(location),
               }}
-            >
-              <Popup>
-                <div className="p-2 min-w-[200px]">
-                  <h3 className="font-semibold text-sm text-foreground">{location.name}</h3>
-                  <p className="text-xs text-muted-foreground mt-1">{location.description}</p>
-                  <button
-                    onClick={() => handleLocationClick(location)}
-                    className="mt-2 text-xs bg-primary text-primary-foreground px-3 py-1.5 rounded-md hover:bg-primary/90 transition-colors w-full"
-                  >
-                    Ver relatos
-                  </button>
-                </div>
-              </Popup>
-            </Marker>
+            />
           ))}
         </MapContainer>
       </div>
