@@ -57,7 +57,7 @@ const Login: React.FC = () => {
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
         <div className="w-full max-w-sm animate-fade-in">
           <div className="flex flex-col items-center mb-8">
-            <div className="w-20 h-20 mb-4 rounded-2xl gradient-primary p-3 shadow-lg">
+            <div className="w-20 h-20 mb-4 rounded-2xl bg-gradient-to-b from-white to-gray-100 p-3 shadow-lg">
               <img src={logo} alt="Alerta Campus" className="w-full h-full object-contain" />
             </div>
             <h1 className="text-2xl font-bold text-foreground">Bem vindo!</h1>
@@ -135,7 +135,7 @@ const Login: React.FC = () => {
                 <strong>Para estudantes da UFPE</strong> - utilize sua matrícula
               </span>
               <span className="block">
-                <strong>Para usuários externos</strong> (não são estudantes da UFPE) - utilize seu CPF
+                <strong>Visitantes</strong> - utilize seu CPF
               </span>
             </DialogDescription>
           </DialogHeader>
