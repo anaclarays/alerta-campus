@@ -115,8 +115,8 @@ const MyReports: React.FC = () => {
                     </span>
                   </div>
 
-                  {relato.status === 'em_analise' && (
-                    <div className="flex gap-2">
+                  <div className="flex gap-2">
+                    {relato.status === 'em_analise' && (
                       <Button
                         variant="ghost"
                         size="sm"
@@ -124,16 +124,16 @@ const MyReports: React.FC = () => {
                       >
                         <Edit className="w-4 h-4" />
                       </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-destructive hover:text-destructive"
-                        onClick={() => setDeleteTarget(relato.id)}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  )}
+                    )}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-destructive hover:text-destructive"
+                      onClick={() => setDeleteTarget(relato.id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
