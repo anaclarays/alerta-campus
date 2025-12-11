@@ -15,6 +15,7 @@ import MapView from '@/components/MapView';
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [showEmergencyOptions, setShowEmergencyOptions] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="mobile-container relative h-screen overflow-hidden bg-muted">
@@ -26,70 +27,90 @@ const Home: React.FC = () => {
       </div>
 
       {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-[1000] p-4 safe-area-top">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg">
-            <img src={logo} alt="Logo" className="w-6 h-6" />
-            <span className="font-semibold text-sm text-foreground">Alerta Campus</span>
-          </div>
+<div className="absolute top-0 left-0 right-0 z-[1000] p-4 safe-area-top">
 
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="bg-card/95 backdrop-blur-sm shadow-lg">
-                <Menu className="w-5 h-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-72">
-              <SheetHeader>
-                <SheetTitle className="flex items-center gap-2">
-                  <div className="bg-white rounded-lg p-1">
-                    <img src={logo} alt="Logo" className="w-8 h-8" />
-                  </div>
-                  Menu
-                </SheetTitle>
-              </SheetHeader>
-              <nav className="mt-6 space-y-2">
-                <button
-                  onClick={() => navigate('/profile')}
-                  className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-                >
-                  Seu Perfil
-                </button>
-                <button
-                  onClick={() => navigate('/notifications')}
-                  className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-                >
-                  Notificações
-                </button>
-                <button
-                  onClick={() => navigate('/my-calls')}
-                  className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-                >
-                  Suas Chamadas
-                </button>
-                <button
-                  onClick={() => navigate('/my-reports')}
-                  className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-                >
-                  Seus Relatos
-                </button>
-              </nav>
-            </SheetContent>
-          </Sheet>
+  <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+    <div className="flex items-center justify-between">
+
+      {/* Some quando o menu estiver aberto */}
+      {!menuOpen && (
+        <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg">
+          <img src={logo} alt="Logo" className="w-6 h-6" />
+          <span className="font-semibold text-sm text-foreground">
+            Alerta Campus
+          </span>
         </div>
-      </div>
+      )}
 
-      {/* Emergency Button */}
-      <div className="absolute bottom-6 right-4 z-[1000] safe-area-bottom">
+      {/* Botão do menu */}
+      <SheetTrigger asChild>
         <Button
-          variant="emergency"
-          size="iconLg"
-          className="rounded-full shadow-xl"
-          onClick={() => setShowEmergencyOptions(true)}
+          variant="ghost"
+          size="icon"
+          className="bg-card/95 backdrop-blur-sm shadow-lg"
         >
-          <AlertTriangle className="w-8 h-8" />
+          <Menu className="w-5 h-5" />
         </Button>
-      </div>
+      </SheetTrigger>
+    </div>
+
+    {/* Conteúdo da aba lateral */}
+    <SheetContent side="right" className="w-72">
+      <SheetHeader>
+        <SheetTitle className="flex items-center gap-2">
+          <div className="bg-white rounded-lg p-1">
+            <img src={logo} alt="Logo" className="w-8 h-8" />
+          </div>
+          Menu
+        </SheetTitle>
+      </SheetHeader>
+
+      <nav className="mt-6 space-y-2">
+        <button
+          onClick={() => navigate('/profile')}
+          className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+        >
+          Seu Perfil
+        </button>
+
+        <button
+          onClick={() => navigate('/notifications')}
+          className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+        >
+          Notificações
+        </button>
+
+        <button
+          onClick={() => navigate('/my-calls')}
+          className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+        >
+          Suas Chamadas
+        </button>
+
+        <button
+          onClick={() => navigate('/my-reports')}
+          className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+        >
+          Seus Relatos
+        </button>
+      </nav>
+    </SheetContent>
+  </Sheet>
+
+</div>
+
+      {!menuOpen && (
+  <div className="absolute bottom-6 right-4 z-[1000] safe-area-bottom transition-all duration-300">
+    <Button
+      variant="emergency"
+      size="iconLg"
+      className="rounded-full shadow-xl"
+      onClick={() => setShowEmergencyOptions(true)}
+    >
+      <AlertTriangle className="w-8 h-8" />
+    </Button>
+  </div>
+)}
 
       {/* Emergency Options Modal */}
       {showEmergencyOptions && (
