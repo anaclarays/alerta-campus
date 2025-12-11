@@ -39,10 +39,13 @@ const ChamadoForm: React.FC = () => {
     name: user?.name || '',
     description: '',
     location: '',
+    customCategory: '',
   });
 
+  const isOthersCategory = category === 'outros';
+
   const handleSubmit = () => {
-    if (!formData.name || !formData.description || !formData.location) {
+    if (!formData.name || !formData.description || !formData.location || (isOthersCategory && !formData.customCategory)) {
       toast({
         title: 'Campos obrigatórios',
         description: 'Preencha todos os campos para enviar',
@@ -52,7 +55,7 @@ const ChamadoForm: React.FC = () => {
     }
 
     addChamado({
-      category: category || 'outros',
+      category: isOthersCategory ? formData.customCategory : (category || 'outros'),
       description: formData.description,
       location: formData.location,
       type: 'descricao',
@@ -95,6 +98,19 @@ const ChamadoForm: React.FC = () => {
             className="mt-1.5"
           />
         </div>
+
+        {isOthersCategory && (
+          <div>
+            <Label htmlFor="customCategory">Tipo de categoria *</Label>
+            <Input
+              id="customCategory"
+              value={formData.customCategory}
+              onChange={(e) => setFormData(prev => ({ ...prev, customCategory: e.target.value }))}
+              placeholder="Descreva o tipo de ocorrência"
+              className="mt-1.5"
+            />
+          </div>
+        )}
 
         <div>
           <Label htmlFor="description">Descrição da ocorrência</Label>

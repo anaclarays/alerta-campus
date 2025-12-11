@@ -85,7 +85,7 @@ const Home: React.FC = () => {
           className="rounded-full shadow-xl"
           onClick={() => setShowEmergencyOptions(true)}
         >
-          <AlertTriangle className="w-6 h-6" />
+          <AlertTriangle className="w-8 h-8" />
         </Button>
       </div>
 
