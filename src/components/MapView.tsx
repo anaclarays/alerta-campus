@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ufpeLocations } from "@/data/ufpeLocations";
+import locationMarker from "@/assets/location-marker.png";
 
 declare const L: any;
 
@@ -26,25 +27,11 @@ export default function MapView({ onLocationClick }: MapViewProps) {
 
       // Adiciona marcadores dos centros acadêmicos
       ufpeLocations.forEach((location) => {
-        const customIcon = L.divIcon({
-          className: 'custom-location-marker',
-          html: `
-            <div style="
-              background: linear-gradient(135deg, hsl(230, 54%, 34%) 0%, hsl(220, 78%, 38%) 100%);
-              color: white;
-              padding: 6px 10px;
-              border-radius: 20px;
-              font-size: 11px;
-              font-weight: 600;
-              white-space: nowrap;
-              box-shadow: 0 4px 12px rgba(42, 57, 133, 0.4);
-              border: 2px solid white;
-              cursor: pointer;
-              transform: translateX(-50%);
-            ">${location.shortName}</div>
-          `,
-          iconSize: [0, 0],
-          iconAnchor: [0, 0],
+        const customIcon = L.icon({
+          iconUrl: locationMarker,
+          iconSize: [32, 40],
+          iconAnchor: [16, 40],
+          popupAnchor: [0, -40],
         });
 
         const marker = L.marker(location.coordinates, { icon: customIcon })

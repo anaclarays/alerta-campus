@@ -28,7 +28,7 @@ const Home: React.FC = () => {
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-[1000] p-4 safe-area-top">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 bg-card/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
+          <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-lg">
             <img src={logo} alt="Logo" className="w-6 h-6" />
             <span className="font-semibold text-sm text-foreground">Alerta Campus</span>
           </div>
@@ -42,7 +42,9 @@ const Home: React.FC = () => {
             <SheetContent side="right" className="w-72">
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2">
-                  <img src={logo} alt="Logo" className="w-8 h-8" />
+                  <div className="bg-white rounded-lg p-1">
+                    <img src={logo} alt="Logo" className="w-8 h-8" />
+                  </div>
                   Menu
                 </SheetTitle>
               </SheetHeader>
