@@ -26,7 +26,7 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* Header */}
+      {/* Header - comentário teste p commit */}
 <div className="absolute top-0 left-0 right-0 z-[1000] p-4 safe-area-top">
 
   <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
