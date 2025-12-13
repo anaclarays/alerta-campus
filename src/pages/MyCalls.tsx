@@ -17,7 +17,7 @@ const MyCalls: React.FC = () => {
 
   return (
     <div className="mobile-container flex flex-col min-h-screen bg-background">
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-4 safe-area-top">
+      <div className="sticky top-4 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-4 safe-area-top">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/home')}

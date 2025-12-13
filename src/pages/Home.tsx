@@ -100,7 +100,7 @@ const Home: React.FC = () => {
 </div>
 
       {!menuOpen && (
-  <div className="absolute bottom-6 right-4 z-[1000] safe-area-bottom transition-all duration-300">
+  <div className="absolute bottom-10 right-4 z-[1000] safe-area-bottom transition-all duration-300">
     <Button
       variant="emergency"
       size="iconLg"
