@@ -1,6 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Search, X } from "lucide-react";
 import { ufpeLocations } from "@/data/ufpeLocations";
+import { Input } from "@/components/ui/input";
 import locationMarker from "@/assets/location-marker.png";
 
 declare const L: any;
@@ -14,6 +16,31 @@ export default function MapView({ onLocationClick }: MapViewProps) {
   const mapRef = useRef<any>(null);
   const markerRef = useRef<any>(null);
   const locationMarkersRef = useRef<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showResults, setShowResults] = useState(false);
+
+  const filteredLocations = ufpeLocations.filter(
+    (location) =>
+      location.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      location.shortName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleLocationSelect = (location: typeof ufpeLocations[0]) => {
+    setSearchQuery("");
+    setShowResults(false);
+    
+    if (mapRef.current) {
+      mapRef.current.setView(location.coordinates, 18);
+    }
+  };
+
+  const handleLocationNavigate = (locationId: string) => {
+    if (onLocationClick) {
+      onLocationClick(locationId);
+    } else {
+      navigate(`/relatos/${locationId}`);
+    }
+  };
 
   useEffect(() => {
     if (!mapRef.current) {
@@ -36,12 +63,9 @@ export default function MapView({ onLocationClick }: MapViewProps) {
 
         const marker = L.marker(location.coordinates, { icon: customIcon })
           .addTo(mapRef.current)
+          .bindPopup(`<strong>${location.shortName}</strong><br/>${location.name}`)
           .on('click', () => {
-            if (onLocationClick) {
-              onLocationClick(location.id);
-            } else {
-              navigate(`/relatos/${location.id}`);
-            }
+            handleLocationNavigate(location.id);
           });
 
         locationMarkersRef.current.push(marker);
@@ -124,6 +148,58 @@ export default function MapView({ onLocationClick }: MapViewProps) {
           }
         }
       `}</style>
+      
+      {/* Barra de Busca */}
+      <div className="absolute top-20 left-4 right-4 z-[1001]">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Buscar localização..."
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setShowResults(e.target.value.length > 0);
+            }}
+            onFocus={() => searchQuery.length > 0 && setShowResults(true)}
+            className="pl-10 pr-10 h-12 bg-background/95 backdrop-blur-sm border-border shadow-lg rounded-xl"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => {
+                setSearchQuery("");
+                setShowResults(false);
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+
+        {/* Resultados da busca */}
+        {showResults && filteredLocations.length > 0 && (
+          <div className="mt-2 bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg overflow-hidden max-h-64 overflow-y-auto">
+            {filteredLocations.map((location) => (
+              <button
+                key={location.id}
+                onClick={() => handleLocationSelect(location)}
+                className="w-full px-4 py-3 text-left hover:bg-accent/50 transition-colors border-b border-border/50 last:border-b-0"
+              >
+                <span className="font-semibold text-foreground">{location.shortName}</span>
+                <span className="text-muted-foreground text-sm ml-2">{location.name}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {showResults && searchQuery && filteredLocations.length === 0 && (
+          <div className="mt-2 bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg p-4 text-center text-muted-foreground">
+            Nenhuma localização encontrada
+          </div>
+        )}
+      </div>
+
       <div
         id="map"
         style={{
