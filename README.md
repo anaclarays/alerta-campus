@@ -1,8 +1,8 @@
-# Welcome to your Lovable project
+# Alerta Campus
 
-## Project info
+## Saiba mais 👇🏽
 
-**URL**: https://lovable.dev/projects/03d2b559-3f05-42c2-b5e5-f6916d16ceb3
+**URL**: https://alerta-campus.lovable.app
 
 ## How can I edit this code?
 
