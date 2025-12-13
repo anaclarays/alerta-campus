@@ -27,7 +27,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Header */}
-<div className="absolute top-0 left-0 right-0 z-[1000] p-4 safe-area-top">
+<div className="absolute top-4 left-0 right-0 z-[1000] p-4 safe-area-top">
 
   <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
     <div className="flex items-center justify-between">
