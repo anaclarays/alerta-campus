@@ -34,10 +34,10 @@ A proposta do aplicativo é facilitar a comunicação entre a comunidade acadêm
 
 ## Equipe responsável - CIntilante
 
-Ana Clara Bizarria
-Byanca Hayally Souza
-Jaianny Karla Souza
-Raiana Laís Donato
-Samara Petrilly 
+Ana Clara Bizarria,
+Byanca Hayally Souza,
+Jaianny Karla Souza,
+Raiana Laís Donato e
+Samara Petrilly
 
 Centro de Informática, UFPE - 2025.2 
