@@ -43,7 +43,7 @@ const MyReports: React.FC = () => {
         </div>
       </div>
 
-      <div className="p-4 border-b border-border">
+      <div className="p-4 mt-4 border-b border-border">
         <div className="flex gap-2">
           <Button
             variant={filter === 'all' ? 'default' : 'outline'}
