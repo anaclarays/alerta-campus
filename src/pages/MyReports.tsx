@@ -142,7 +142,7 @@ const MyReports: React.FC = () => {
       </div>
 
       <Dialog open={!!deleteTarget} onOpenChange={() => setDeleteTarget(null)}>
-        <DialogContent className="max-w-sm mx-4">
+        <DialogContent className="max-w-sm w-[calc(100%-2rem)]">
           <DialogHeader>
             <DialogTitle>Cancelar envio</DialogTitle>
             <DialogDescription>

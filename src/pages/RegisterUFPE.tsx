@@ -237,7 +237,7 @@ const RegisterUFPE: React.FC = () => {
       </div>
 
       <Dialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
-        <DialogContent className="max-w-sm mx-4">
+        <DialogContent className="max-w-sm w-[calc(100%-2rem)]">
           <DialogHeader>
             <DialogTitle>Cadastro incompleto!</DialogTitle>
             <DialogDescription>

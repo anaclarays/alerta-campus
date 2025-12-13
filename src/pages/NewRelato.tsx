@@ -69,7 +69,7 @@ const NewRelato: React.FC = () => {
 
   return (
     <div className="mobile-container flex flex-col min-h-screen bg-background">
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-4 safe-area-top">
+      <div className="sticky top-4 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-4 safe-area-top">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate(`/relatos/${locationId}`)}
@@ -124,7 +124,7 @@ const NewRelato: React.FC = () => {
         </div>
       </div>
 
-      <div className="sticky bottom-0 bg-background/95 backdrop-blur-sm border-t border-border p-4 safe-area-bottom">
+      <div className="sticky bottom-8 bg-background/95 backdrop-blur-sm border-t border-border p-4 safe-area-bottom">
         <div className="flex gap-3">
           <Button variant="outline" className="flex-1" onClick={() => navigate(`/relatos/${locationId}`)}>
             Cancelar
@@ -136,7 +136,7 @@ const NewRelato: React.FC = () => {
       </div>
 
       <Dialog open={showDisclaimer} onOpenChange={setShowDisclaimer}>
-        <DialogContent className="max-w-sm mx-4">
+        <DialogContent className="max-w-sm w-[calc(100%-2rem)]">
           <DialogHeader>
             <DialogTitle className="text-center">Sobre seus relatos</DialogTitle>
           </DialogHeader>

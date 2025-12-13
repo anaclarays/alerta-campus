@@ -82,7 +82,7 @@ const Emergency: React.FC = () => {
 
   return (
     <div className="mobile-container flex flex-col min-h-screen gradient-primary">
-      <div className="p-4 safe-area-top">
+      <div className="p-4 mt-4 safe-area-top">
         <button
           onClick={handleCancel}
           className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
@@ -112,7 +112,7 @@ const Emergency: React.FC = () => {
         </div>
       </div>
 
-      <div className="p-4 safe-area-bottom">
+      <div className="p-4 mb-4 safe-area-bottom">
         <Button
           variant="outline"
           size="lg"
@@ -124,7 +124,7 @@ const Emergency: React.FC = () => {
       </div>
 
       <Dialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
-        <DialogContent className="max-w-sm mx-4">
+        <DialogContent className="max-w-sm w-[calc(100%-2rem)]">
           <DialogHeader>
             <DialogTitle>Tem certeza que deseja cancelar?</DialogTitle>
             <DialogDescription>

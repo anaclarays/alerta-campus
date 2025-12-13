@@ -154,7 +154,7 @@ const Profile: React.FC = () => {
         </div>
       </div>
 
-      <div className="sticky bottom-10 bg-background/95 backdrop-blur-sm border-t border-border p-4 safe-area-bottom">
+      <div className="sticky bottom-8 bg-background/95 backdrop-blur-sm border-t border-border p-4 safe-area-bottom">
         <div className="flex gap-3">
           <Button variant="outline" className="flex-1" onClick={() => navigate('/home')}>
             Cancelar

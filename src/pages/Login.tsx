@@ -126,7 +126,7 @@ const Login: React.FC = () => {
       </div>
 
       <Dialog open={showForgotPassword} onOpenChange={setShowForgotPassword}>
-        <DialogContent className="max-w-sm mx-4">
+        <DialogContent className="max-w-sm w-[calc(100%-2rem)]">
           <DialogHeader>
             <DialogTitle className="text-center">Recuperação de Senha</DialogTitle>
             <DialogDescription className="text-center pt-4">

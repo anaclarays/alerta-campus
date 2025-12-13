@@ -23,7 +23,7 @@ const Chamados: React.FC = () => {
 
   return (
     <div className="mobile-container flex flex-col min-h-screen bg-background">
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-4 safe-area-top">
+      <div className="sticky top-4 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-4 safe-area-top">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/home')}
@@ -35,7 +35,7 @@ const Chamados: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-4 mt-4">
         <p className="text-sm text-muted-foreground mb-4">
           Selecione a categoria que melhor descreve sua ocorrência:
         </p>
