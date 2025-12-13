@@ -22,7 +22,7 @@ const RegisterType: React.FC = () => {
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
         <div className="w-full max-w-sm animate-fade-in">
           <div className="flex flex-col items-center mb-10">
-            <div className="w-16 h-16 mb-4 rounded-xl gradient-primary p-2.5 shadow-lg">
+            <div className="w-16 h-16 mb-4 bg-gradient-to-b from-white to-gray-100 p-2.5 shadow-lg">
               <img src={logo} alt="Alerta Campus" className="w-full h-full object-contain" />
             </div>
             <h1 className="text-xl font-bold text-foreground">Criar Conta</h1>
