@@ -155,7 +155,7 @@ export default function MapView({ onLocationClick }: MapViewProps) {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Buscar localização..."
+            placeholder="Buscar Centro Acadêmico..."
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
