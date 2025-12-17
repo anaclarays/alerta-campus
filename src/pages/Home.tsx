@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Menu, AlertTriangle, X } from 'lucide-react';
+import { Menu, AlertTriangle, X, LogOut } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -14,8 +15,14 @@ import MapView from '@/components/MapView';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const [showEmergencyOptions, setShowEmergencyOptions] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <div className="mobile-container relative h-screen overflow-hidden bg-muted">
@@ -92,6 +99,16 @@ const Home: React.FC = () => {
           className="w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors"
         >
           Seus Relatos
+        </button>
+
+        <div className="border-t border-border my-2" />
+
+        <button
+          onClick={handleLogout}
+          className="w-full text-left px-4 py-3 rounded-lg hover:bg-destructive/10 transition-colors text-destructive flex items-center gap-2"
+        >
+          <LogOut className="w-4 h-4" />
+          Sair da conta
         </button>
       </nav>
     </SheetContent>
