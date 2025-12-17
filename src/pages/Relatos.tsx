@@ -37,7 +37,7 @@ const Relatos: React.FC = () => {
             <h1 className="text-lg font-semibold">Relatos</h1>
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <MapPin className="w-3 h-3" />
-              {location.shortName}
+              {location.shortName} - {relatos.length} {relatos.length === 1 ? 'relato' : 'relatos'}
             </p>
           </div>
         </div>

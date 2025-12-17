@@ -31,6 +31,7 @@ const RegisterUFPE: React.FC = () => {
   const [showCancelDialog, setShowCancelDialog] = useState(false);
 
   const [formData, setFormData] = useState({
+    username: '',
     name: '',
     birthDate: '',
     gender: '',
@@ -47,7 +48,7 @@ const RegisterUFPE: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    const requiredFields = ['name', 'birthDate', 'gender', 'address', 'matricula', 'phone', 'cpf', 'email', 'centro'];
+    const requiredFields = ['username', 'name', 'birthDate', 'gender', 'address', 'matricula', 'phone', 'cpf', 'email', 'centro'];
     const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
 
     if (missingFields.length > 0) {
@@ -114,6 +115,17 @@ const RegisterUFPE: React.FC = () => {
 
       <div className="flex-1 overflow-auto px-4 py-6">
         <div className="space-y-4">
+          <div>
+            <Label htmlFor="username">Usuário (para login) *</Label>
+            <Input
+              id="username"
+              value={formData.username}
+              onChange={(e) => handleChange('username', e.target.value)}
+              placeholder="Digite seu nome de usuário"
+              className="mt-1.5"
+            />
+          </div>
+
           <div>
             <Label htmlFor="name">Nome completo *</Label>
             <Input
