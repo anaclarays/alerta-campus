@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
 
 const NewRelato: React.FC = () => {
   const navigate = useNavigate();
@@ -31,15 +32,26 @@ const NewRelato: React.FC = () => {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [content, setContent] = useState('');
   const [selectedLocation, setSelectedLocation] = useState(locationId || '');
+  const [customLocation, setCustomLocation] = useState('');
 
   const location = ufpeLocations.find(loc => loc.id === selectedLocation);
   const wordCount = content.trim().split(/\s+/).filter(Boolean).length;
+  const isOtherLocation = selectedLocation === 'outro';
 
   const handleSubmit = () => {
     if (!content.trim()) {
       toast({
         title: 'Campo obrigatório',
         description: 'Escreva um relato para enviar',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (isOtherLocation && !customLocation.trim()) {
+      toast({
+        title: 'Campo obrigatório',
+        description: 'Digite a localização',
         variant: 'destructive',
       });
       return;
@@ -54,17 +66,21 @@ const NewRelato: React.FC = () => {
       return;
     }
 
+    const finalLocationName = isOtherLocation 
+      ? customLocation.trim() 
+      : (location?.name || '');
+
     addRelato({
       content: content.trim(),
-      location: selectedLocation,
-      locationName: location?.name || '',
+      location: isOtherLocation ? 'outro' : selectedLocation,
+      locationName: finalLocationName,
     });
 
     toast({
       title: 'Relato enviado!',
       description: 'Seu relato foi enviado para análise',
     });
-    navigate(`/relatos/${selectedLocation}`);
+    navigate('/my-reports');
   };
 
   return (
@@ -84,7 +100,10 @@ const NewRelato: React.FC = () => {
       <div className="flex-1 p-4 space-y-4">
         <div>
           <Label>Localização</Label>
-          <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+          <Select value={selectedLocation} onValueChange={(value) => {
+            setSelectedLocation(value);
+            if (value !== 'outro') setCustomLocation('');
+          }}>
             <SelectTrigger className="mt-1.5">
               <SelectValue placeholder="Selecione a localização" />
             </SelectTrigger>
@@ -97,8 +116,24 @@ const NewRelato: React.FC = () => {
                   </div>
                 </SelectItem>
               ))}
+              <SelectItem value="outro">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  Outro - Digite a localização
+                </div>
+              </SelectItem>
             </SelectContent>
           </Select>
+          
+          {isOtherLocation && (
+            <Input
+              value={customLocation}
+              onChange={(e) => setCustomLocation(e.target.value)}
+              placeholder="Digite a localização..."
+              className="mt-2"
+              maxLength={100}
+            />
+          )}
         </div>
 
         <div>
